@@ -1,6 +1,11 @@
 var pureLearning = true;
+var readyToGetMessage = false;
 
 var phrases = new Object();
+phrases['what is your name'] = new Object();
+phrases['what is your name']['my name is chatbot'] = 0;
+phrases['my name is chatbot'] = new Object();
+phrases['my name is chatbot']['me too!'] = 0;
 
 function displayPhrases(){
     $("#phrases").val(JSON.stringify(phrases));
@@ -44,13 +49,48 @@ function print(speaker,message){
     if($chatbox.length) $chatbox.scrollTop($chatbox[0].scrollHeight - $chatbox.height());
 }
 
-function chat(){
-    var message = $("#message").val();
-    $("#message").val("");
-    print("You",message);
-    if (pureLearning)
-    console.log(message);
+function waitForMessage(){
+    console.log(readyToGetMessage);
+    if (!readyToGetMessage) {
+        setTimeout(waitForMessage, 1000);
+    }
 }
+
+function getMessage(){
+    waitForMessage();
+    console.log("donezo");
+}
+
+function chatLoop(){
+    var prompt = "";
+    var reply = "";
+    var index = 0;
+    prompt = getMessage();
+    while (true){
+        if (index%2) {
+            reply = getMessage();
+            print("You",reply);
+        }
+        else {
+            reply = findReply(prompt);
+            print("Bot",reply);
+        }
+        addPair(prompt,reply);
+        prompt = reply;
+        index += 1;
+    }
+}
+
+/*var prompt = "";
+function chat(){
+    prompt = $("#message").val();
+    $("#message").val("");
+    print("You",prompt);
+    var reply = findReply(prompt);
+    print("Bot",reply);
+    addPair(prompt,reply);
+}*/
+
 
 $("#learn-button").on('click',function(){
     if (!pureLearning){
@@ -72,4 +112,5 @@ $("#talk-button").on('click',function(){
 
 $(document).ready(function(){
     displayPhrases();
+    /*chatLoop();*/
 });
