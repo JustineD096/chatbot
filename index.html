@@ -1,0 +1,45 @@
+---
+layout: base
+css: |
+nav: |
+    <li><a href="/">Home</a></li>
+    <li><a href="/resume/">Resume</a></li>
+    <li class="active"><a href="/projects/">Projects</a></li>
+    <li><a href="/contact/">Contact</a></li>
+js: |
+    <script src="/static/js/chatbot.js"></script>
+---
+
+<section class="content">
+    <div class='container'>
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="javascript:replacePhrases();">
+                    <div class="form-group">
+                        <label for="phrases">Phrases the bot knows:</label>
+                        <textarea class="form-control" rows="12" id="phrases" name="phrases" style="resize: none;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-block">Replace current phrases</button>
+                </form>
+                <br>
+                <div class="col-sm-6">
+                    <button class="btn btn-success btn-block active" id="learn-button">Pure Learning Mode</button>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-warning btn-block" id="talk-button">Talk &amp; Learn Mode</button>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="chatbox">Chat:</label>
+                <textarea class="form-control" rows="12" id="chatbox" name="chatbox" style="resize: none;" readonly></textarea>
+                <br>
+                <form action="javascript:chat();">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="message" placeholder="Your message here">
+                    </div>
+                    <button type="submit" class="btn btn-default btn-block">Send message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
