@@ -48,13 +48,6 @@ function print(speaker,message){
     if($chatbox.length) $chatbox.scrollTop($chatbox[0].scrollHeight - $chatbox.height());
 }
 
-function waitForMessage(){
-    console.log(readyToGetMessage);
-    if (!readyToGetMessage) {
-        setTimeout(waitForMessage, 1000);
-    }
-}
-
 var prompt0 = "";
 var reply0 = "";
 function talkAndLearn(){
@@ -78,6 +71,13 @@ function chat(){
     else talkAndLearn();
 }
 
+function initVars(){
+    $("#message").prop("placeholder","Initial prompt");
+    $("#message").val("");
+    prompt0 = "";
+    reply0 = "";
+}
+
 $(document).ready(function(){
     displayPhrases();
 
@@ -87,7 +87,7 @@ $(document).ready(function(){
             print(false, "\n\nSWITCHING TO PURE LEARNING MODE\n");
             $(this).addClass("active");
             $("#talk-button").removeClass("active");
-            $("#message").prop("placeholder","Initial prompt");
+            initVars();
         }
     });
 
@@ -97,7 +97,7 @@ $(document).ready(function(){
             print(false, "\n\nSWITCHING TO TALK &amp; LEARN MODE\n");
             $(this).addClass("active");
             $("#learn-button").removeClass("active");
-            $("#message").prop("placeholder","Initial prompt");
+            initVars();
         }
     });
 
