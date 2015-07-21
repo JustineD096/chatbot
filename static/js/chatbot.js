@@ -67,7 +67,7 @@ function talkAndLearn(){
 }
 
 function chat(){
-    if (pureLearning) alert("501 NOT IMPLEMENTED\n\nTry Talk &amp; Learn Mode");
+    if (pureLearning) alert("501 NOT IMPLEMENTED\n\nTry Talk & Learn Mode");
     else talkAndLearn();
 }
 
