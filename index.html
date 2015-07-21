@@ -16,10 +16,10 @@ js: |
             <div class="col-sm-6">
                 <form action="javascript:replacePhrases();">
                     <div class="form-group">
-                        <label for="phrases">Phrases the bot knows:</label>
+                        <label for="phrases">Chatbot's brain:</label>
                         <textarea class="form-control" rows="12" id="phrases" name="phrases" style="resize: none;"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-default btn-block">Replace current phrases</button>
+                    <button type="submit" class="btn btn-default btn-block">Replace his brain</button>
                 </form>
                 <br>
                 <div class="col-sm-6">
@@ -33,9 +33,9 @@ js: |
                 <label for="chatbox">Chat:</label>
                 <textarea class="form-control" rows="12" id="chatbox" name="chatbox" style="resize: none;" readonly></textarea>
                 <br>
-                <form action="javascript:sendMessage();">
+                <form action="javascript:chat();">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="message" placeholder="Your message here">
+                        <input type="text" class="form-control" id="message" placeholder="Initial prompt">
                     </div>
                     <button type="submit" class="btn btn-default btn-block">Send message</button>
                 </form>

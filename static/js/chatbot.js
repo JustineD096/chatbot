@@ -1,5 +1,4 @@
 var pureLearning = true;
-var readyToGetMessage = false;
 
 var phrases = new Object();
 phrases['what is your name'] = new Object();
@@ -56,61 +55,46 @@ function waitForMessage(){
     }
 }
 
-function getMessage(){
-    waitForMessage();
-    console.log("donezo");
-}
-
-function chatLoop(){
-    var prompt = "";
-    var reply = "";
-    var index = 0;
-    prompt = getMessage();
-    while (true){
-        if (index%2) {
-            reply = getMessage();
-            print("You",reply);
-        }
-        else {
-            reply = findReply(prompt);
-            print("Bot",reply);
-        }
-        addPair(prompt,reply);
-        prompt = reply;
-        index += 1;
-    }
-}
-
-/*var prompt = "";
+var prompt0 = "";
+var reply0 = "";
 function chat(){
-    prompt = $("#message").val();
+    var newMessage = $("#message").val();
+    if (newMessage == "") return;
     $("#message").val("");
-    print("You",prompt);
-    var reply = findReply(prompt);
-    print("Bot",reply);
-    addPair(prompt,reply);
-}*/
+    print("You", newMessage);
 
-
-$("#learn-button").on('click',function(){
-    if (!pureLearning){
-        pureLearning = true;
-        print(false, "\n\nSWITCHING TO PURE LEARNING MODE\n");
-        $(this).addClass("active");
-        $("#talk-button").removeClass("active");
+    if (prompt0 == ""){
+        $("#message").prop("placeholder","Reply");
+        prompt0 = newMessage
     }
-});
-
-$("#talk-button").on('click',function(){
-    if (pureLearning){
-        pureLearning = false;
-        print(false, "\n\nSWITCHING TO TALK &amp; LEARN MODE\n");
-        $(this).addClass("active");
-        $("#learn-button").removeClass("active");
-    }
-});
+    
+    reply0 = findReply(prompt0);
+    print('Chatbot',reply0);
+    addPair(prompt0,reply0);
+    prompt0 = reply0;
+}
 
 $(document).ready(function(){
     displayPhrases();
-    /*chatLoop();*/
+
+    $("#learn-button").on('click',function(){
+        if (!pureLearning){
+            pureLearning = true;
+            print(false, "\n\nSWITCHING TO PURE LEARNING MODE\n");
+            $(this).addClass("active");
+            $("#talk-button").removeClass("active");
+            $("#message").prop("placeholder","Initial prompt");
+        }
+    });
+
+    $("#talk-button").on('click',function(){
+        if (pureLearning){
+            pureLearning = false;
+            print(false, "\n\nSWITCHING TO TALK &amp; LEARN MODE\n");
+            $(this).addClass("active");
+            $("#learn-button").removeClass("active");
+            $("#message").prop("placeholder","Initial prompt");
+        }
+    });
+
 });
