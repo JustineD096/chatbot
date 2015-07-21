@@ -57,21 +57,25 @@ function waitForMessage(){
 
 var prompt0 = "";
 var reply0 = "";
-function chat(){
+function talkAndLearn(){
     var newMessage = $("#message").val();
     if (newMessage == "") return;
     $("#message").val("");
     print("You", newMessage);
 
-    if (prompt0 == ""){
-        $("#message").prop("placeholder","Reply");
-        prompt0 = newMessage
-    }
-    
+    if (prompt0 == "") $("#message").prop("placeholder","Reply");
+    else addPair(prompt0,newMessage);
+
+    prompt0 = newMessage
     reply0 = findReply(prompt0);
     print('Chatbot',reply0);
     addPair(prompt0,reply0);
     prompt0 = reply0;
+}
+
+function chat(){
+    if (pureLearning) alert("501 NOT IMPLEMENTED\n\nTry Talk &amp; Learn Mode");
+    else talkAndLearn();
 }
 
 $(document).ready(function(){
